@@ -1,0 +1,78 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd 
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <context:component-scan base-package="scaffold"/>
+    <context:annotation-config/>
+    <tx:annotation-driven/>
+
+    <bean id="freemarkerConfig"
+          class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="viewResolvers">
+            <list>
+                <bean id="viewResolver"
+                      class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+                    <property name="prefix" value="/WEB-INF/pages/"/>
+                    <property name="suffix" value=".ftl"/>
+                    <property name="contentType" value="text/html;charset=UTF-8"/>
+                </bean>
+            </list>
+        </property>
+        <property name="defaultViews">
+            <list>
+                <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+                    <property name="prefixJson" value="true"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <mvc:annotation-driven/>
+    <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/"/>
+
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="SpringScaffold"/>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="aggregator.data.entity"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="generateDdl" value="true"/>
+                <property name="database" value="HSQL"/>
+                <!--<property name="database" value="POSTGRESQL"/>-->
+                <property name="showSql" value="true"/>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
+        <property name="url" value="jdbc:hsqldb:file:database"/>
+        <property name="username" value="sa"/>
+        <property name="password" value=""/>
+    </bean>
+
+    <!--<bean id="dataSource"-->
+    <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+    <!--<property name="driverClassName" value="org.postgresql.Driver"/>-->
+    <!--<property name="url" value="jdbc:postgresql://localhost/data"/>-->
+    <!--<property name="username" value="postgres"/>-->
+    <!--<property name="password" value="postgres"/>-->
+    <!--</bean>-->
+
+</beans>
