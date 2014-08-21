@@ -1,14 +1,14 @@
 package scaffold.controllers.main;
 
-import scaffold.controllers.main.InputFormBean;
-import scaffold.data.entity.TestEntity;
-import scaffold.data.dao.TestEntityDao;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import scaffold.data.dao.TestEntityDao;
+import scaffold.data.entity.TestEntity;
 
 import javax.inject.Inject;
-import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -20,8 +20,7 @@ public class MainController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView displayForm(@ModelAttribute("inputBean") InputFormBean inputBean) {
-        ModelAndView mav = new ModelAndView("main");
-        return mav;
+        return new ModelAndView("main");
     }
 
     @RequestMapping(value = "/add",  method = RequestMethod.POST)
@@ -36,7 +35,7 @@ public class MainController {
     private ModelAndView displayAllData() {
         ModelAndView mav = new ModelAndView("display");
         List<TestEntity> allData = testEntityDao.getAll();
-        mav.addObject("data",allData);
+        mav.addObject("data", allData);
         return mav;
     }
 }
