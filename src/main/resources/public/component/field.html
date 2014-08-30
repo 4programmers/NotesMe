@@ -1,0 +1,11 @@
+<ng-form name="form" >
+<!-- $parent.form  -->
+			<div class="form-group has-feedback"  ng-class="{'has-error ': form[name].$invalid && form[name].$dirty,'has-success': !form[name].$invalid && form[name].$dirty}">
+				<label for="{{name}}">{{label}}</label> <input type="text"
+					class="form-control" id="{{name}}" ng-model="value" dynamic-name="name"
+					required="required" >
+					
+				<span class="glyphicon glyphicon-warning-sign form-control-feedback" ng-show="form[name].$invalid && form[name].$dirty" title="Cos poszlo nie tak"></span>
+				<span class="glyphicon glyphicon-ok form-control-feedback" ng-show="!form[name].$invalid && form[name].$dirty" ></span>
+			</div>
+</ng-form>

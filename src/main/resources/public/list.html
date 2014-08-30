@@ -1,0 +1,29 @@
+<div class="panel panel-info ">
+	<a class="btn btn-default pull-right " href="#/car">Add car</a>
+
+	<div class="input-group col-xs-6 pull-right ">
+		<div class="input-group-addon">
+			<span class="glyphicon glyphicon-search"></span>
+		</div>
+		<input class="form-control" type="text" placeholder="Search"
+			ng-model="query" ng-change="search()">
+	</div>
+	<div class="panel-heading">Cars</div>
+	<table class="table table-striped">
+		<tr>
+			<th>Index</th>
+			<th>Name</th>
+			<th>Price</th>
+			<th></th>
+		</tr>
+		<tr ng-repeat="car in cars  track by car.id " class="animate-repeat">
+			<td>{{$index + 1}}</td>
+			<td><a href="" ng-href="#/cars/{{car.id}}"> {{car.name}}</a> <like
+					val="car" /></td>
+			<td>{{car.price}}</td>
+			<td><a href="" ng-click="remove(car)"
+				class="glyphicon glyphicon-trash"></a></td>
+		</tr>
+	</table>
+</div>
+
