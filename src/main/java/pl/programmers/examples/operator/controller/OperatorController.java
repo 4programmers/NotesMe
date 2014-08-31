@@ -1,7 +1,8 @@
-package pl.programmers;
+package pl.programmers.examples.operator.controller;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,28 +12,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import pl.programmers.examples.operator.model.Operator;
+import pl.programmers.examples.operator.repo.OperatorRepository;
+
 @RestController
-@RequestMapping("/cars")
-public class CarResource {
+@RequestMapping("/operators")
+public class OperatorController {
 	@Inject
-	CarRepository repo;
+	OperatorRepository repo;
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
-	public Car find(@PathVariable Long id) {
+	public Operator find(@PathVariable Long id) {
 		return repo.findOne(id);
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public List<Car> all(@RequestParam(required = false) String query) {
+	public List<Operator> all(@RequestParam(required = false) String query) {
 		if (query == null) {
 			return repo.findAll();
 		}
-		return repo.findByNameContainingIgnoringCase(query);
+		return repo.find(query);
 
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public Long save(@RequestBody Car car) {
+	public Long save(@RequestBody Operator car) {
 		repo.save(car);
 		return car.getId();
 
@@ -41,6 +45,22 @@ public class CarResource {
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
 	public void delete(@PathVariable Long id) {
 		repo.delete(id);
+
+	}
+
+	@PostConstruct
+	public void addSomeOperators() {
+		Operator john = new Operator();
+		john.setEmail("john@gmail.com");
+		john.setFirstName("John");
+		john.setLastName("Kowalski");
+		repo.save(john);
+
+		Operator mike = new Operator();
+		mike.setEmail("mike@gmail.com");
+		mike.setFirstName("Mikre");
+		mike.setLastName("Kowalski");
+		repo.save(mike);
 
 	}
 }
