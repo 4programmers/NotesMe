@@ -6,13 +6,13 @@ import java.net.URI;
 
 import javax.annotation.PostConstruct;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.web.WebAppConfiguration;
+import pl.programmers.util.log.AutowiredLogger;
 
 @ComponentScan(basePackages = Application.ROOT_PACKAGE)
 @EnableJpaRepositories(basePackages = Application.ROOT_PACKAGE)
@@ -26,7 +26,8 @@ public class Application {
 	@Value("${server.port:8080}")
 	private int port;
 
-	Logger logger = Logger.getLogger(Application.class);
+    @AutowiredLogger
+    private org.slf4j.Logger logger;
 
 	@PostConstruct
 	private void tryOpenBrowser() throws Exception {
@@ -37,7 +38,5 @@ public class Application {
 		} catch (Exception e) {
 			logger.info("I can't open your browser " + address);
 		}
-
 	}
-
 }
