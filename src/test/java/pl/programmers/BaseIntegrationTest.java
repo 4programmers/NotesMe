@@ -10,6 +10,5 @@ import pl.programmers.config.Application;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @Transactional
-public class BaseIntegrationTest {
-
+public abstract class BaseIntegrationTest {
 }
