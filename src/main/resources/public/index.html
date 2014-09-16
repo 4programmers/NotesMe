@@ -20,78 +20,83 @@
     <link href="static/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
+    <link href="authentication/css/signin.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
 </head>
 
 <body ng-app="app">
 
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#"><i> 4Note</i></a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#/notes"><span class="glyphicon glyphicon-calendar"></span> Notes</a>
-                    </li>
-                     <li>
-                        <a href="#/examples/operators"><span class="glyphicon glyphicon-briefcase"></span> Examples</a>
-                    </li>
-                    <li>
-                        <a href="#/settings"> <span class="glyphicon glyphicon-wrench"></span> Settings</a>
-                    </li>
-                    <li>
-                        <a href="#/logout"><span class="glyphicon glyphicon-off"></span> Logout</a>
-                    </li>
-                </ul>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><i> 4Note</i></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#/notes"><span class="glyphicon glyphicon-calendar"></span> Notes</a>
+                </li>
+                <li>
+                    <a href="#/examples/operators"><span class="glyphicon glyphicon-briefcase"></span> Examples</a>
+                </li>
+                <li>
+                    <a href="#/settings"> <span class="glyphicon glyphicon-wrench"></span> Settings</a>
+                </li>
+                <li>
+                    <a href="#/login"><span class="glyphicon glyphicon-log-in"></span>Login</a>
+                </li>
+                <li>
+                    <a href="#/logout"><span class="glyphicon glyphicon-off"></span> Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="intro-header">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="intro-message">
+                    <div ng-view >
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
-    <div class="intro-header">
+    </div>
+</div>
+<script
+        src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src="static/ext/angular.js"></script>
+<script type="text/javascript" src="static/ext/angular-cookies.js"></script>
+<script type="text/javascript" src="static/ext/angular-resource.js"></script>
+<script type="text/javascript" src="static/ext/angular-route.js"></script>
+<script type="text/javascript" src="static/ext/angular-sanitize.js"></script>
+<script type="text/javascript" src="static/ext/angular-animate.js"></script>
 
-	<div class="container">
-   		<div class="row">
-			<div class="col-lg-12">
-				<div class="intro-message">
-				<div ng-view >
-				</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	</div>
-	<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-	<script type="text/javascript" src="static/ext/angular.js"></script>
-	<script type="text/javascript" src="static/ext/angular-cookies.js"></script>
-	<script type="text/javascript" src="static/ext/angular-resource.js"></script>
-	<script type="text/javascript" src="static/ext/angular-route.js"></script>
-	<script type="text/javascript" src="static/ext/angular-sanitize.js"></script>
-	<script type="text/javascript" src="static/ext/angular-animate.js"></script>
-	
 <script type="text/javascript"
-		src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
-		
-		<script type="text/javascript" src="js/app.js"></script>
-		
-		<script type="text/javascript" src="examples/operator/js/operator.js"></script>
-		<script type="text/javascript" src="examples/operator/js/operator-controller.js"></script>
-		<script type="text/javascript" src="examples/operator/js/operator-service.js"></script>
+        src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+        src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+
+<script type="text/javascript" src="js/app.js"></script>
+
+<script type="text/javascript" src="examples/operator/js/operator.js"></script>
+<script type="text/javascript" src="examples/operator/js/operator-controller.js"></script>
+<script type="text/javascript" src="examples/operator/js/operator-service.js"></script>
+<script type="text/javascript" src="authentication/js/loginForm.js"></script>
 
 </body>
 

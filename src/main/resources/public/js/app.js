@@ -1,11 +1,11 @@
-var app = angular.module('app', [ 'operator', 'ngRoute', 'ngCookies',
+var app = angular.module('app', [ 'operator','login', 'ngRoute', 'ngCookies',
 		'ngAnimate' ]);
 
 
 
 app.config(function($routeProvider) {
 	$routeProvider.when('/', {
-		templateUrl : 'view/main.html',
+		templateUrl : 'view/main.html'
 	}).otherwise({
 		redirectTo : '/'
 	});
